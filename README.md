@@ -4,11 +4,7 @@ Aplikacion e-commerce i ndërtuar me *Next.js, zhvilluar si projekt grupi për l
 
 ---
 
-## Link Live
-(shto linkun nga Vercel pas deployment)
 
-## Screenshots
-(shto foto këtu para dorëzimit — Home, Product Details, Cart, Dashboard, Favorites)
 
 ---
 
