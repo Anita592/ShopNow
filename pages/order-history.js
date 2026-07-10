@@ -3,7 +3,6 @@ import Link from 'next/link';
 import React, { useEffect, useReducer } from 'react';
 import Layout from '../components/Layout';
 import { getError } from '../utils/error';
-
 function reducer(state, action) {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -22,7 +21,6 @@ function OrderHistoryScreen() {
     orders: [],
     error: '',
   });
-
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -37,54 +35,99 @@ function OrderHistoryScreen() {
   }, []);
   return (
     <Layout title="Order History">
-      <h1 className="mb-4 text-xl">Order History</h1>
-      {loading ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div className="alert-error">{error}</div>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="min-w-full">
-            <thead className="border-b">
-              <tr>
-                <th className="px-5 text-left">ID</th>
-                <th className="p-5 text-left">DATE</th>
-                <th className="p-5 text-left">TOTAL</th>
-                <th className="p-5 text-left">PAID</th>
-                <th className="p-5 text-left">DELIVERED</th>
-                <th className="p-5 text-left">ACTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order._id} className="border-b">
-                  <td className=" p-5 ">{order._id.substring(20, 24)}</td>
-                  <td className=" p-5 ">{order.createdAt.substring(0, 10)}</td>
-                  <td className=" p-5 ">${order.totalPrice}</td>
-                  <td className=" p-5 ">
-                    {order.isPaid
-                      ? `${order.paidAt.substring(0, 10)}`
-                      : 'not paid'}
-                  </td>
-                  <td className=" p-5 ">
-                    {order.isDelivered
-                      ? `${order.deliveredAt.substring(0, 10)}`
-                      : 'not delivered'}
-                  </td>
-                  <td className=" p-5 ">
-                    <Link href={`/order/${order._id}`} passHref>
-                      Details
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="max-w-5xl mx-auto">
+        <div className="bg-gradient-to-r from-amber-300 to-amber-100 rounded-2xl p-10 mb-10 text-center shadow-md">
+          <h1 className="text-3xl font-bold mb-2">Order History</h1>
+          <p className="text-gray-700">
+            Track and review all of your past orders.
+          </p>
         </div>
-      )}
+        {loading ? (
+          <div className="bg-white rounded-xl shadow-sm border p-10 text-center text-gray-600">
+            Loading...
+          </div>
+        ) : error ? (
+          <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-6 text-center">
+            {error}
+          </div>
+        ) : orders.length === 0 ? (
+          <div className="bg-white rounded-xl shadow-sm border p-10 text-center text-gray-600">
+            You have no orders yet. Start shopping to see your orders here.
+          </div>
+        ) : (
+          <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead className="bg-amber-100">
+                  <tr>
+                    <th className="px-5 py-3 text-left text-sm font-semibold">ID</th>
+                    <th className="px-5 py-3 text-left text-sm font-semibold">DATE</th>
+                    <th className="px-5 py-3 text-left text-sm font-semibold">TOTAL</th>
+                    <th className="px-5 py-3 text-left text-sm font-semibold">PAID</th>
+                    <th className="px-5 py-3 text-left text-sm font-semibold">
+                      DELIVERED
+                    </th>
+                    <th className="px-5 py-3 text-left text-sm font-semibold">
+                      ACTION
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map((order, index) => (
+                    <tr
+                      key={order._id}
+                      className={`border-b ${
+                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
+                      } hover:bg-amber-50 transition`}
+                    >
+                      <td className="px-5 py-4">{order._id.substring(20, 24)}</td>
+                      <td className="px-5 py-4">
+                        {order.createdAt.substring(0, 10)}
+                      </td>
+                      <td className="px-5 py-4 font-medium">
+                        ${order.totalPrice}
+                      </td>
+                      <td className="px-5 py-4">
+                        {order.isPaid ? (
+                          <span className="text-green-600 font-medium">
+                            {order.paidAt.substring(0, 10)}
+                          </span>
+                        ) : (
+                          <span className="text-red-500 font-medium">
+                            not paid
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-5 py-4">
+                        {order.isDelivered ? (
+                          <span className="text-green-600 font-medium">
+                            {order.deliveredAt.substring(0, 10)}
+                          </span>
+                        ) : (
+                          <span className="text-red-500 font-medium">
+                            not delivered
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-5 py-4">
+                        <Link
+                          href={`/order/${order._id}`}
+                          passHref
+                          className="text-amber-600 font-medium hover:underline"
+                        >
+                          Details →
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
     </Layout>
   );
 }
-
 OrderHistoryScreen.auth = true;
 export default OrderHistoryScreen;
