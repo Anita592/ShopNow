@@ -7,13 +7,13 @@
 - Content Hosting: cloudinary
 - Deploy: Github, Vercel, MongoDB Atlas
 
-![next amazona](/public/app.jpg)
+![next ShopNow](/public/app.jpg)
 
 ## Resources
 
 - Youtube Video : https://youtu.be/_IBlyR5mRzA
-- Demo Website :  https://next-tailwind-amazona.vercel.app
-- Source Code   :  https://github.com/basir/next-tailwind-amazona
+- Demo Website :  https://next-tailwind-ShopNow.vercel.app
+- Source Code   :  https://github.com/basir/next-tailwind-ShopNow
 - Full Course: [basir.thinkific.com](https://basir.thinkific.com/courses/build-ecommerce-website-like-amazon-by-next-js?coupon=SAVE90)
 
 ## What you will learn
@@ -37,8 +37,8 @@ https://basir.thinkific.com/courses/build-ecommerce-website-like-amazon-by-next-
 1. Clone repo
 
    ```shell
-    $ git clone git@github.com:basir/next-tailwind-amazona.git
-    $ cd next-tailwind-amazona
+    $ git clone git@github.com:basir/next-tailwind-ShopNow.git
+    $ cd next-tailwind-ShopNow
    ```
 
 2. Create .env File
@@ -49,7 +49,7 @@ https://basir.thinkific.com/courses/build-ecommerce-website-like-amazon-by-next-
 
    - Local MongoDB
    - Install it from [here](https://www.mongodb.com/try/download/community)
-   - In .env file update MONGODB_URI=mongodb://localhost/amazona
+   - In .env file update MONGODB_URI=mongodb://localhost/ShopNow
    - OR Atlas Cloud MongoDB
    - Create database at [https://cloud.mongodb.com](https://cloud.mongodb.com)
    - In .env file update MONGODB_URI=mongodb+srv://your-db-connection

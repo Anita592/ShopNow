@@ -45,16 +45,16 @@
 
 7. open website at http://your_server_ip
 8. create project folder on server
-   `mkdir -p ~/apps/next-amazona`
+   `mkdir -p ~/apps/next-ShopNow`
 
 9. edit package.json:
 
    ```shell
-   "deploy":"npm run build && rsync --exclude=.git -azP . ubuntu@your_server_ip:/home/ubuntu/apps/next-amazona"
+   "deploy":"npm run build && rsync --exclude=.git -azP . ubuntu@your_server_ip:/home/ubuntu/apps/next-ShopNow"
    ```
 
 10. run `npm run deploy` on project folder on local machine
-11. nano ~/apps/next-amazona/.env
+11. nano ~/apps/next-ShopNow/.env
 
     ```shell
 
@@ -69,7 +69,7 @@
 
     ```shell
     sudo npm install pm2 -g
-    pm2 start npm --watch pages --name "next-amazona" -- start --  -p 3001
+    pm2 start npm --watch pages --name "next-ShopNow" -- start --  -p 3001
     ```
 
 13. open website at http://your_server_ip:3001
