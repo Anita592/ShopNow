@@ -73,12 +73,10 @@ function OrderHistoryScreen() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map((order, index) => (
+                  {orders.map((order) => (
                     <tr
                       key={order._id}
-                      className={`border-b ${
-                        index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
-                      } hover:bg-amber-50 transition`}
+                      className="border-b bg-white even:bg-gray-50 hover:bg-amber-50 transition"
                     >
                       <td className="px-5 py-4">{order._id.substring(20, 24)}</td>
                       <td className="px-5 py-4">
